@@ -17,8 +17,18 @@ class StatusChanger():
         'clear' : {
             'custom_status': None,
         },
-        'invisble': {
+        'invisible': {
             'status': 'invisible'
+        },
+        'full_offline': {
+            'custom_status': None,
+            'status': 'invisible'
+        },
+        'gameoff': {
+            'show_current_game': False
+        },
+        'gameon': {
+            'show_current_game': True
         }
     }
 
@@ -30,7 +40,10 @@ class StatusChanger():
 
 
     def change_status(self, name):
-        self.discord_client.change_status(self.status_options[name])
+        if name in self.status_options:
+            self.discord_client.change_status(self.status_options[name])
+        else:
+            print("Não conheço esse status")
 
     def handle_connect(self, client, userdata, flags, rc):
         print("[Status da conexão] " + str(rc))
