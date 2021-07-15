@@ -13,7 +13,7 @@ class DiscordAPIClient:
         """Loop trough for each option in status and send PATCH request to settings with payload with option name as key and its value as value"""
         for option in status:
             response = requests.patch(self.base_url + 'settings', headers=self.headers, json={option: status.get(option)})
-            print(f'[Mudando {option}] {response.status_code} - {response.text}') 
+            print(f'[Mudando {option}] {response.status_code} - {response.ok}') 
 
             
     
